@@ -67,6 +67,11 @@ namespace CompoundTriggerSystem
 
 		public void OnObserverEnter(TriggerObserver selfObserver, TriggerObserver otherObserver)
 		{
+			if (selfObserver.Group != this)
+			{
+				return;
+			}
+
 			bool isGroupAdded = false;
 
 			var otherGroup = otherObserver.Group;
@@ -95,6 +100,11 @@ namespace CompoundTriggerSystem
 
 		public void OnObserverExit(TriggerObserver selfObserver, TriggerObserver otherObserver)
 		{
+			if (selfObserver.Group != this)
+			{
+				return;
+			}
+
 			bool isGroupRemoved = false;
 
 			var otherGroup = otherObserver.Group;
@@ -115,7 +125,7 @@ namespace CompoundTriggerSystem
 			{
 				foreach (var e in GetComponents<ITriggerGroupEventHandler>())
 				{
-					if(e == null)
+					if (e == null)
 					{
 						continue;
 					}
